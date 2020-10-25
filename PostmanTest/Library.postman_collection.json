@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "6d071685-d9d8-483e-8593-ffc59359bb2c",
+		"name": "Library",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Carte",
+			"item": [
+				{
+					"name": "CreateCarteCuAutori",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carte\":{\r\n        \"titlu\": \"Arta Manipulati\",\r\n        \"ISBN\": \"121-213-123\",\r\n        \"anPublicatie\": 4\r\n        \r\n    },\r\n    \"autoriCarti\":[{\"nume\":\"Kevin\", \"prenume\":\"Dutton\"},\r\n    {\"nume\":\"Peter\", \"prenume\":\"Frankopan\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Carte/SaveCarte",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Carte",
+								"SaveCarte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GETCarte",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Carte/CarteById?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Carte",
+								"CarteById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCarti",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/Carte",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Carte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCarteDupaTitlu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Carte/CartiByTitlu?titlu=tent&pageNumber=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Carte",
+								"CartiByTitlu"
+							],
+							"query": [
+								{
+									"key": "titlu",
+									"value": "tent"
+								},
+								{
+									"key": "pageNumber",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCarte",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCarte\": 2, \r\n    \"titlu\":\"tentraga\", \r\n    \"ISBN\":\"973-123-1231\",\r\n    \"anPublicatie\": \"2019-12-01\",\r\n    \"idEditura\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/Carte/UpdateCarte",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Carte",
+								"UpdateCarte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCarte",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Carte/DeleteCarte?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Carte",
+								"DeleteCarte"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Autor",
+			"item": [
+				{
+					"name": "localhost:8080/Autor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/GetAllAutors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"GetAllAutors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"nan\",\r\n    \"prenume\":\"dnasm\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Autor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAutor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCarte\": 1,\r\n    \"nume\":\"nan\",\r\n    \"prenume\":\"dnasm\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/Autor/UpdateAutor",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autor",
+								"UpdateAutor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/Autor/DeleteAutor?id=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Autor",
+								"DeleteAutor"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Editura",
+			"item": [
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Editure?deleteEditura?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Editure"
+							],
+							"query": [
+								{
+									"key": "deleteEditura?id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
