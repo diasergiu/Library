@@ -12,23 +12,17 @@ import java.util.List;
 
 public class CarteRepository {
 
-    EntityManagerUtil _entityManagerUtil;
     CarteDAO _carteDAO;
     AutorDAO _autorDAO;
 
 
     public CarteRepository(){
-        this._entityManagerUtil = new EntityManagerUtil();
         _carteDAO = new CarteDAO();
         _autorDAO = new AutorDAO();
     }
 
     public Carte getCarteDupaId(int id) {
-        EntityManager manager = _entityManagerUtil.getEntityManager();
-        manager.getTransaction().begin();
-        Carte carte = manager.find(Carte.class, id);
-        manager.getTransaction().commit();
-        return carte;
+       return _carteDAO.getCarteById(id);
     }
 
     public int SaveCarteNowaSiAutory(CreateCarteDTO modelView) {
@@ -36,7 +30,7 @@ public class CarteRepository {
         for(Autor a : modelView.getAutoriCarti()){
             a.getCarteNavigator().add(modelView.getCarte());
         }
-        EntityManager entitymanager = _entityManagerUtil.getEntityManager();
+        EntityManager entitymanager = EntityManagerUtil.getEntityManager();
         entitymanager.getTransaction().begin();
         _carteDAO.SaveCarte(modelView.getCarte(), entitymanager);
         _autorDAO.SaveAutorii(modelView.getAutoriCarti(), entitymanager);
@@ -57,5 +51,9 @@ public class CarteRepository {
 
     public List<Carte> getCarteByTitlu(String titlu, int pageNumber) {
         return _carteDAO.getCarteByTitlu(titlu, pageNumber);
+    }
+
+    public void deleteCarte(int id) {
+        _carteDAO.DeleteCarte(id);
     }
 }

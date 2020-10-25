@@ -15,12 +15,6 @@ public class CarteDAO {
         entityManager.persist(carte);
     }
 
-
-    public void updateCarte(Carte carteUpdatata) {
-        EntityManager entitymanager = EntityManagerUtil.getEntityManager();
-        entitymanager.getTransaction().begin();
-    }
-
     public List<Carte> GetToateCartile() {
         EntityManager entityManager = EntityManagerUtil.getEntityManager();
         entityManager.getTransaction().begin();
@@ -53,5 +47,34 @@ public class CarteDAO {
                 .getResultList();
         entityManager.getTransaction().commit();
         return result;
+    }
+
+    public void updateCarte(Carte carteUpdatata) {
+        EntityManager entityManager = EntityManagerUtil.getEntityManager();
+        entityManager.getTransaction().begin();
+        Carte carte = entityManager.find(Carte.class, carteUpdatata.getIdCarte());
+        carte.setAutorNavigator(carteUpdatata.getAutorNavigator());
+        carte.setAnPublicatie(carteUpdatata.getAnPublicatie());
+        carte.setEdituraNavigator(carteUpdatata.getEdituraNavigator());
+        carte.setISBN(carteUpdatata.getISBN());
+        carte.setTitlu(carteUpdatata.getTitlu());
+        entityManager.persist(carte);
+        entityManager.getTransaction().commit();
+    }
+
+
+    public void DeleteCarte(int id) {
+        EntityManager entityManager = EntityManagerUtil.getEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.find(Carte.class, id));
+        entityManager.getTransaction().commit();
+    }
+
+    public Carte getCarteById(int id) {
+        EntityManager manager = EntityManagerUtil.getEntityManager();
+        manager.getTransaction().begin();
+        Carte carte = manager.find(Carte.class, id);
+        manager.getTransaction().commit();
+        return carte;
     }
 }

@@ -20,32 +20,23 @@ import javax.persistence.Persistence;
 
 public class AutorRepository {
 
-    private AutorDAO autorDAO;
+    private AutorDAO _autorDAO;
 
-    public static List<Autor> getAllAutors() {
+    public AutorRepository(){ this._autorDAO = new AutorDAO();}
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("guide-to-jpa-with-hibernate");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
-        List<Autor> result = entityManager
-                .createQuery("from Autor", Autor.class)
-                .getResultList();
-        entityManager.getTransaction().commit();
-        return result;
+    public List<Autor> getAllAutors() {
+        return _autorDAO.getAllAutori();
     }
 
     public void saveNewAutor(Autor autor) {
-
-        EntityManager manager = getEntityManager();
-        manager.getTransaction().begin();
-
-        manager.persist(autor);
-        manager.getTransaction().commit();
+        _autorDAO.SaveAutor(autor);
     }
 
-    private EntityManager getEntityManager(){
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("guide-to-jpa-with-hibernate");
-        return entityManagerFactory.createEntityManager();
+    public void updateAutor(Autor autorUpdatata) {
+        _autorDAO.updateAutor(autorUpdatata);
+    }
+
+    public void deleteAutor(int id) {
+        _autorDAO.deleteAutor(id);
     }
 }

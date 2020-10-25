@@ -3,6 +3,7 @@
 -- CALL FT_INIT();
 create sequence CARTE_SEQ START WITH 1 INCREMENT BY 1;
 create sequence AUTOR_SEQ START WITH 1 INCREMENT BY 1;
+create sequence EDITURA_SEQ START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE IF NOT EXISTS Autor(
 	id_autor INT default AUTOR_SEQ.nextval PRIMARY KEY,
@@ -11,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Autor(
 );
 
 CREATE TABLE IF NOT EXISTS Editura(
-	id_editura INT AUTO_INCREMENT PRIMARY KEY,
+	id_editura INT default EDITURA_SEQ.nextval PRIMARY KEY,
 	denumire_editura VARCHAR(250),
 	UNIQUE (denumire_editura)
 );

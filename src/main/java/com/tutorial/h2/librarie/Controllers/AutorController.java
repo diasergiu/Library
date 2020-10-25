@@ -35,10 +35,20 @@ public class AutorController {
 //        System.out.println(autor);
 //    }
 
-
-    @PostMapping(value = "/createAutor",
+    @PostMapping(value = "/Autor/createAutor",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createAutor(@RequestBody Autor autor){
         _autorRepository.saveNewAutor(autor);
     }
+
+    @PostMapping(value = "/Autor/UpdateAutor")
+    public void updateAutor(@RequestBody Autor autorUpdatata){
+        _autorRepository.updateAutor(autorUpdatata);
+    }
+
+    @DeleteMapping(value = "Autor/DeleteAutor")
+    public void deleteAutor(int id){
+        _autorRepository.deleteAutor(id);
+    }
+
 }

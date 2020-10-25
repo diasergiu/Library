@@ -10,9 +10,14 @@ import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "carteNavigator"})
+@javax.persistence.SequenceGenerator(
+        name="EDITURA_SEQ",
+        sequenceName="EDITURA_SEQ",
+        allocationSize = 1
+)
 public class Editura {
 
-    @Id @GeneratedValue(strategy = GenerationType.TABLE)
+    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CARTE_SEQ")
     @Column(name = "id_editura")
     private int idEditura;
     @Column(name = "denumire_editura", unique = true)

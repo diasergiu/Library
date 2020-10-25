@@ -1,54 +1,50 @@
 package DAO;
 
-import Entityes.Autor;
+import Entityes.Editura;
 import com.tutorial.h2.librarie.Util.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Set;
 
-public class AutorDAO {
-
-    public void SaveAutorii(Set<Autor> autoriCarti, EntityManager entityManager) {
-        for(Autor a : autoriCarti){
-            entityManager.persist(a);
-        }
-    }
-
-    public List<Autor> getAllAutori(){
+public class EdituraDAO {
+    public List<Editura> getAllEditura() {
         EntityManager entityManager = EntityManagerUtil.getEntityManager();
-
         entityManager.getTransaction().begin();
-        List<Autor> result = entityManager
-                .createQuery("from Autor", Autor.class)
+        List<Editura> result = entityManager
+                .createQuery("from Editura", Editura.class)
                 .getResultList();
         entityManager.getTransaction().commit();
         return result;
     }
 
-    public void SaveAutor(Autor autor) {
+    public Editura getEdituraById(int id) {
         EntityManager manager = EntityManagerUtil.getEntityManager();
         manager.getTransaction().begin();
+        Editura editura = manager.find(Editura.class, id);
+        manager.getTransaction().commit();
+        return editura;
+    }
 
-        manager.persist(autor);
+    public void saveEditura(Editura editura) {
+        EntityManager manager = EntityManagerUtil.getEntityManager();
+        manager.getTransaction().begin();
+        manager.persist(editura);
         manager.getTransaction().commit();
     }
 
-    public void updateAutor(Autor autorUpdatata) {
+    public void updateEditura(Editura edituraUpdate) {
         EntityManager entityManager = EntityManagerUtil.getEntityManager();
         entityManager.getTransaction().begin();
-        Autor autor = entityManager.find(Autor.class, autorUpdatata.getIdAutor());
-        autor.setCarteNavigator(autorUpdatata.getCarteNavigator());
-        autor.setNameAutor(autorUpdatata.getNameAutor());
-        autor.setPrenumeAutor(autorUpdatata.getPrenumeAutor());
+        Editura autor = entityManager.find(Editura.class, edituraUpdate.getIdEditura());
+        autor.setDenumireEditura(edituraUpdate.getDenumireEditura());
         entityManager.persist(autor);
         entityManager.getTransaction().commit();
     }
 
-    public void deleteAutor(int id) {
+    public void deleteEditura(int id) {
         EntityManager entityManager = EntityManagerUtil.getEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.find(Autor.class, id));
+        entityManager.remove(entityManager.find(Editura.class, id));
         entityManager.getTransaction().commit();
     }
 }
