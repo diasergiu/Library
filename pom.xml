@@ -50,8 +50,12 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.4.22.Final</version>
 		</dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

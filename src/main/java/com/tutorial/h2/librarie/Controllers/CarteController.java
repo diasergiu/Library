@@ -3,14 +3,12 @@ package com.tutorial.h2.librarie.Controllers;
 import DTO.CreateCarteDTO;
 import Entityes.Carte;
 import Repository.CarteRepository;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.PostUpdate;
+
 import java.util.List;
 
 @RestController
@@ -41,6 +39,12 @@ public class CarteController {
     @PostMapping(value = "/UpdateCarte")
     public void updateCarte(@RequestBody Carte carteUpdatata){
         _carteRepository.updateCarte(carteUpdatata);
+    }
+
+    @GetMapping(value = "/CartiByTitlu")
+    public List<Carte> getCarteByTitlu(String titlu, int pageNumber){
+        return _carteRepository.getCarteByTitlu(titlu, pageNumber);
+
     }
 
 }

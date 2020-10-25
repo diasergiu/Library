@@ -1,7 +1,7 @@
 package Repository;
 
-import DAO.AutorDTO;
-import DAO.CarteDTO;
+import DAO.AutorDAO;
+import DAO.CarteDAO;
 import DTO.CreateCarteDTO;
 import Entityes.Autor;
 import Entityes.Carte;
@@ -9,19 +9,18 @@ import com.tutorial.h2.librarie.Util.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Set;
 
 public class CarteRepository {
 
     EntityManagerUtil _entityManagerUtil;
-    CarteDTO _carteDTO;
-    AutorDTO _autorDTO;
+    CarteDAO _carteDAO;
+    AutorDAO _autorDAO;
 
 
     public CarteRepository(){
         this._entityManagerUtil = new EntityManagerUtil();
-        _carteDTO = new CarteDTO();
-        _autorDTO = new AutorDTO();
+        _carteDAO = new CarteDAO();
+        _autorDAO = new AutorDAO();
     }
 
     public Carte getCarteDupaId(int id) {
@@ -39,8 +38,8 @@ public class CarteRepository {
         }
         EntityManager entitymanager = _entityManagerUtil.getEntityManager();
         entitymanager.getTransaction().begin();
-        _carteDTO.SaveCarte(modelView.getCarte(), entitymanager);
-        _autorDTO.SaveAutorii(modelView.getAutoriCarti(), entitymanager);
+        _carteDAO.SaveCarte(modelView.getCarte(), entitymanager);
+        _autorDAO.SaveAutorii(modelView.getAutoriCarti(), entitymanager);
         int id = modelView.getCarte().getIdCarte();
         entitymanager.getTransaction().commit();
         return id;
@@ -49,10 +48,14 @@ public class CarteRepository {
 
 
     public void updateCarte(Carte carteUpdatata) {
-        _carteDTO.updateCarte(carteUpdatata);
+        _carteDAO.updateCarte(carteUpdatata);
     }
 
     public List<Carte> getToateCartile() {
-        return _carteDTO.GetToateCartile();
+        return _carteDAO.GetToateCartile();
+    }
+
+    public List<Carte> getCarteByTitlu(String titlu, int pageNumber) {
+        return _carteDAO.getCarteByTitlu(titlu, pageNumber);
     }
 }

@@ -11,10 +11,15 @@ import java.util.Set;
 @Entity
 @Table(name = "autor")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "carteNavigator"})
+@javax.persistence.SequenceGenerator(
+        name="AUTOR_SEQ",
+        sequenceName="AUTOR_SEQ",
+        allocationSize = 1
+)
 public class Autor {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_autor")
+    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="AUTOR_SEQ")
+@Column(name = "id_autor")
     private int idAutor;
     @Column(name = "nume")
     @JsonProperty

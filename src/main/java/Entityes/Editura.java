@@ -12,7 +12,7 @@ import java.util.Set;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "carteNavigator"})
 public class Editura {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id_editura")
     private int idEditura;
     @Column(name = "denumire_editura", unique = true)

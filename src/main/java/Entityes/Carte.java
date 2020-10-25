@@ -7,9 +7,14 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 @Entity
+@javax.persistence.SequenceGenerator(
+        name="CARTE_SEQ",
+        sequenceName="CARTE_SEQ",
+        allocationSize = 1
+)
 public class Carte {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CARTE_SEQ")
     @Column(name = "id_carte")
     private int idCarte;
     @Column(name = "titlu")

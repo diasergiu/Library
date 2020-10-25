@@ -1,10 +1,11 @@
---DROP TABLE autor;
---DROP TABLE carte;
---DROP TABLE carte_autor_mapping;
---DROP TABLE editura;
+-- enable to create full test index for carte
+-- CREATE ALIAS IF NOT EXISTS FT_INIT FOR "org.h2.fulltext.FullText.init";
+-- CALL FT_INIT();
+create sequence CARTE_SEQ START WITH 1 INCREMENT BY 1;
+create sequence AUTOR_SEQ START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE IF NOT EXISTS Autor(
-	id_autor INT AUTO_INCREMENT PRIMARY KEY,
+	id_autor INT default AUTOR_SEQ.nextval PRIMARY KEY,
 	nume VARCHAR(250) NOT NULL,
 	prenume VARCHAR(250) NOT NULL
 );
@@ -16,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Editura(
 );
 
 CREATE TABLE IF NOT EXISTS Carte(
-	id_carte INT AUTO_INCREMENT PRIMARY KEY,
+	id_carte INT default CARTE_SEQ.nextval PRIMARY KEY,
 	titlu VARCHAR(250) NOT NULL,
 	ISBN VARCHAR(250) NOT NULL,
 	an_publicatie DATE NOT NULL,
@@ -32,16 +33,7 @@ CREATE TABLE IF NOT EXISTS Carte_autor_mapping(
 	FOREIGN KEY (id_autor) REFERENCES autor(id_autor)
 );
 
-
+-- enable to create full test index for carte
+-- CALL FT_CREATE_INDEX('PUBLIC', 'CARTE', NULL);
 --
---INSERT INTO autor (nume, prenume) VALUES
---    ('Proust', 'Marcel'),
---    ('Frankopan', 'Viktor');
 
-INSERT INTO editura(denumire_editura) VALUES
-    ('Globo'),
-    ('Nemira');
---
---INSERT INTO Carte (titlu, ISBN, an_publicatie, id_editura) values
---('tentoria', '973-123-1231', '2019-12-1', 1),
---('Victoria', '22334-121-231', '2018-4-1', 2);
