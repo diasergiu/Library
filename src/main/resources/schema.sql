@@ -23,15 +23,15 @@ CREATE TABLE IF NOT EXISTS Carte(
 	ISBN VARCHAR(250) NOT NULL,
 	an_publicatie DATE NOT NULL,
 	id_editura INT,
-	FOREIGN KEY (id_editura) REFERENCES editura(id_editura)
+	FOREIGN KEY (id_editura) REFERENCES editura(id_editura) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Carte_autor_mapping(
 	id_carte INT NOT NULL,
 	id_autor INT NOT NULL,
 	PRIMARY KEY(id_carte, id_autor),
-	FOREIGN KEY (id_carte) REFERENCES carte(id_carte),
-	FOREIGN KEY (id_autor) REFERENCES autor(id_autor)
+	FOREIGN KEY (id_carte) REFERENCES carte(id_carte) ON DELETE CASCADE,
+	FOREIGN KEY (id_autor) REFERENCES autor(id_autor) ON DELETE CASCADE
 );
 
 -- enable to create full test index for carte

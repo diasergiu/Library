@@ -23,7 +23,6 @@ INSERT INTO Carte (titlu, ISBN, an_publicatie, id_editura) values
 ('Victoria', '22334-121-231', '2018-4-1', 2);
 
 
---INSERT INTO Carte_autor_mapping (id_carte, id_autor) values
---(1,1),
---{1,2),
---(2,1);
+INSERT INTO Carte_autor_mapping (id_carte, id_autor) values
+(1, 1),
+(2, 1);

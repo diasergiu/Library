@@ -24,7 +24,7 @@ public class CarteController {
     }
 
     @GetMapping(value = "/Carte/CarteById")
-    public Carte getCarteDupaId(int id){
+    public Carte getCarteDupaId(int id) {
         return _carteRepository.getCarteDupaId(id);
     }
 

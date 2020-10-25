@@ -9,34 +9,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class EditorController {
+public class EdituraController {
 
     private EdituraRepository _edituraRepository;
 
-    public EditorController(){ _edituraRepository = new EdituraRepository();}
+    public EdituraController(){ _edituraRepository = new EdituraRepository();}
     @GetMapping(value = "/Editura")
     public List<Editura> getAllEditura(){
         return _edituraRepository.getAlleditura();
     }
 
-    @GetMapping(value = "/Editura/getById")
+    @GetMapping(value = "/Editura/GetById")
     public Editura getEdituraById(int id){
         return _edituraRepository.getEdituraById(id);
     }
 
-    @PostMapping(value = "/Editor/createEditor",
+    @PostMapping(value = "/Editura/CreateEditura",
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createEditor(@RequestBody Editura editura){
+    public void createEditura(@RequestBody Editura editura){
         _edituraRepository.saveNewEditura(editura);
     }
 
-    @PostMapping(value = "/Editor/UpdateEditor")
-    public void updateEditor(@RequestBody Editura editorUpdatata){
-        _edituraRepository.updateEditor(editorUpdatata);
+    @PostMapping(value = "/Editura/UpdateEditura")
+    public void updateEditura(@RequestBody Editura edituraUpdatata){
+        _edituraRepository.updateEditura(edituraUpdatata);
     }
 
-    @DeleteMapping(value = "Editor/DeleteEditor")
-    public void deleteEditor(int id){
+    @DeleteMapping(value = "/Editura/DeleteEditura")
+    public void deleteEditura(int id){
         _edituraRepository.deleteEditura(id);
     }
 }

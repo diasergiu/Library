@@ -20,12 +20,12 @@ public class AutorController {
         _autorRepository = new AutorRepository();
     }
 
-    @GetMapping(value = "/autor")
+    @GetMapping(value = "/Autor")
     public ModelAndView HomeAutor(){
         return new ModelAndView("AutorView", "Autor", new Autor());
     }
 
-    @GetMapping(value =  "/getAllAutors")
+    @GetMapping(value =  "/GetAllAutors")
     public List<Autor> getAllAutors() {
        return _autorRepository.getAllAutors();
     }
@@ -35,7 +35,7 @@ public class AutorController {
 //        System.out.println(autor);
 //    }
 
-    @PostMapping(value = "/Autor/createAutor",
+    @PostMapping(value = "/Autor/CreateAutor",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createAutor(@RequestBody Autor autor){
         _autorRepository.saveNewAutor(autor);

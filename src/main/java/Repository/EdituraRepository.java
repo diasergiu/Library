@@ -23,7 +23,7 @@ public class EdituraRepository {
         _edituraDAO.saveEditura(editura);
     }
 
-    public void updateEditor(Editura edituraUpdate) {
+    public void updateEditura(Editura edituraUpdate) {
         _edituraDAO.updateEditura(edituraUpdate);
     }
 

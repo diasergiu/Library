@@ -17,7 +17,7 @@ import java.util.Set;
 )
 public class Editura {
 
-    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CARTE_SEQ")
+    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EDITURA_SEQ")
     @Column(name = "id_editura")
     private int idEditura;
     @Column(name = "denumire_editura", unique = true)
