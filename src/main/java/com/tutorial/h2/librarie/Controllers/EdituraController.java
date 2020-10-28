@@ -3,6 +3,8 @@ package com.tutorial.h2.librarie.Controllers;
 import Entityes.Autor;
 import Entityes.Editura;
 import Repository.EdituraRepository;
+import Repository.IEdituraRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +13,9 @@ import java.util.List;
 @RestController
 public class EdituraController {
 
-    private EdituraRepository _edituraRepository;
+    @Autowired
+    private IEdituraRepository _edituraRepository;
 
-    public EdituraController(){ _edituraRepository = new EdituraRepository();}
     @GetMapping(value = "/Editura")
     public List<Editura> getAllEditura(){
         return _edituraRepository.getAlleditura();

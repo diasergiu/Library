@@ -1,5 +1,6 @@
 package Repository;
 import DAO.AutorDAO;
+import DAO.Interfaces.IAutorDAO;
 import Entityes.Autor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +12,7 @@ import java.util.List;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,11 +20,10 @@ import javax.persistence.Persistence;
 
 
 
-public class AutorRepository {
+public class AutorRepository implements IAutorRepository {
 
-    private AutorDAO _autorDAO;
-
-    public AutorRepository(){ this._autorDAO = new AutorDAO();}
+    @Autowired
+    private IAutorDAO _autorDAO;
 
     public List<Autor> getAllAutors() {
         return _autorDAO.getAllAutori();

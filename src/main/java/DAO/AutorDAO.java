@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO.Interfaces.IAutorDAO;
 import Entityes.Autor;
 import com.tutorial.h2.librarie.Util.EntityManagerUtil;
 
@@ -7,7 +8,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Set;
 
-public class AutorDAO {
+public class AutorDAO implements IAutorDAO {
 
     public void SaveAutorii(Set<Autor> autoriCarti, EntityManager entityManager) {
         for(Autor a : autoriCarti){

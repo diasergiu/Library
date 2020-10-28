@@ -3,6 +3,8 @@ package com.tutorial.h2.librarie.Controllers;
 import DTO.CreateCarteDTO;
 import Entityes.Carte;
 import Repository.CarteRepository;
+import Repository.ICarteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -11,12 +13,8 @@ import java.util.List;
 @RestController
 public class CarteController {
 
-    private CarteRepository _carteRepository;
-
-    public CarteController(){
-        this._carteRepository = new CarteRepository();
-    }
-
+    @Autowired
+    private ICarteRepository _carteRepository;
 
     @GetMapping(value = "/Carte")
     public List<Carte> getAllCarti(){

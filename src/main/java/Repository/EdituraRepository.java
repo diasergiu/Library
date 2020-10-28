@@ -1,15 +1,16 @@
 package Repository;
 
 import DAO.EdituraDAO;
+import DAO.Interfaces.IEdituraDAO;
 import Entityes.Editura;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class EdituraRepository {
+public class EdituraRepository implements IEdituraRepository {
 
-    private EdituraDAO _edituraDAO;
-
-    public EdituraRepository(){this._edituraDAO = new EdituraDAO();}
+    @Autowired
+    private IEdituraDAO _edituraDAO;
 
     public List<Editura> getAlleditura() {
         return _edituraDAO.getAllEditura();

@@ -1,12 +1,13 @@
 package DAO;
 
+import DAO.Interfaces.IEdituraDAO;
 import Entityes.Editura;
 import com.tutorial.h2.librarie.Util.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class EdituraDAO {
+public class EdituraDAO implements IEdituraDAO {
     public List<Editura> getAllEditura() {
         EntityManager entityManager = EntityManagerUtil.getEntityManager();
         entityManager.getTransaction().begin();

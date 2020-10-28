@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO.Interfaces.ICarteDAO;
 import Entityes.Carte;
 import com.tutorial.h2.librarie.Util.EntityManagerUtil;
 import org.hibernate.Session;
@@ -7,7 +8,7 @@ import org.hibernate.query.Query;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-public class CarteDAO {
+public class CarteDAO implements ICarteDAO {
 
     private static int PAGE_SIZE = 10;
 
@@ -24,17 +25,6 @@ public class CarteDAO {
         entityManager.getTransaction().commit();
         return result;
     }
-
-    // if data is big enough this swould be more efficient
-//    public List<Carte> getCarteByTitlu(String titlu, int pageNumber) {
-//        Session session = EntityManagerUtil.getSessionFactory().openSession();
-//        String hql = "SELECT c FROM FT_SEARCH('"+ titlu + "', 0, 0)";
-//
-//        Query query = session.createQuery(hql, Carte.class)
-//                .setFirstResult(PAGE_SIZE * ((pageNumber-1) +1 ))
-//                .setMaxResults(PAGE_SIZE);
-//        return query.getResultList();
-//    }
 
     public List<Carte> getCarteByTitlu(String titlu, int pageNumber) {
         EntityManager entityManager = EntityManagerUtil.getEntityManager();

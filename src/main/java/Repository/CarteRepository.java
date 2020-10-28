@@ -2,30 +2,29 @@ package Repository;
 
 import DAO.AutorDAO;
 import DAO.CarteDAO;
+import DAO.Interfaces.IAutorDAO;
+import DAO.Interfaces.ICarteDAO;
 import DTO.CreateCarteDTO;
 import Entityes.Autor;
 import Entityes.Carte;
 import com.tutorial.h2.librarie.Util.EntityManagerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class CarteRepository {
+public class CarteRepository implements ICarteRepository {
 
-    CarteDAO _carteDAO;
-    AutorDAO _autorDAO;
-
-
-    public CarteRepository(){
-        _carteDAO = new CarteDAO();
-        _autorDAO = new AutorDAO();
-    }
+    @Autowired
+    private ICarteDAO _carteDAO;
+    @Autowired
+    private IAutorDAO _autorDAO;
 
     public Carte getCarteDupaId(int id) {
        return _carteDAO.getCarteById(id);
     }
 
-    public int SaveCarteNowaSiAutory(CreateCarteDTO modelView) {
+    public void SaveCarteNowaSiAutory(CreateCarteDTO modelView) {
         modelView.getCarte().setAutorNavigator(modelView.getAutoriCarti());
         for(Autor a : modelView.getAutoriCarti()){
             a.getCarteNavigator().add(modelView.getCarte());
@@ -34,10 +33,7 @@ public class CarteRepository {
         entitymanager.getTransaction().begin();
         _carteDAO.SaveCarte(modelView.getCarte(), entitymanager);
         _autorDAO.SaveAutorii(modelView.getAutoriCarti(), entitymanager);
-        int id = modelView.getCarte().getIdCarte();
         entitymanager.getTransaction().commit();
-        return id;
-
     }
 
 

@@ -2,6 +2,7 @@ package com.tutorial.h2.librarie.Controllers;
 
 import Entityes.Autor;
 import Repository.AutorRepository;
+import Repository.IAutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,8 @@ import java.util.List;
 @RestController
 public class AutorController {
 
-    public AutorRepository _autorRepository;
-
-    public AutorController(){
-        _autorRepository = new AutorRepository();
-    }
+    @Autowired
+    public IAutorRepository _autorRepository;
 
     @GetMapping(value = "/Autor")
     public ModelAndView HomeAutor(){
