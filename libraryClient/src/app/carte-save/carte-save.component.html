@@ -1,0 +1,58 @@
+
+<form (ngSubmit)="saveCarte(carteForm)" #carteForm="ngForm">
+  <div class="form-group">
+    <label>Titlu</label>
+    <input type="text" class="form-control" id="titlu" required [(ngModel)]="carte.titlu" name="titlu">
+  </div>
+
+  <div class="form-group">
+    <label>ISBN</label>
+    <input type="text" class="form-control" id="ISBN" required [(ngModel)]="carte.ISBN" name="ISBN">
+  </div>
+
+  <div class="form-group">
+    <label>An publicatie</label>
+    <input type="date" class="form-control" id="anPublicatie" required [(ngModel)]="carte.anPublicatie" (ngModelChange)="onChange($event)"
+           name="anPublicatie">
+  </div>
+
+  <!-- <ng-select 
+  [ngClass]="'ng-select'" 
+  [(ngModel)]="carte.autoriCarti" 
+  [ngModelOptions]="{standalone: true}" 
+  [options]="autori"
+  [multiple]="true">
+</ng-select> -->
+
+  <div>
+    <label>Autor:</label>
+    <select  [compareWith]="compareFn" [(ngModel)]="carte.autoriCarti" multiple name="autori">
+      <option value="0">--Select--</option>
+      <option *ngFor="let autor of autori"
+              [ngValue]="autor"
+              [selected]="carte.autoriCarti == autor"
+              >
+        {{autor.nume}}   {{autor.prenume}}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label>Editura:</label>
+    <select [(ngModel)]="carte.editura" name="editura">
+      <option value="0">--Select--</option>
+      <option *ngFor="let editura of edituri"
+              [ngValue]="editura"
+              [selected]="carte.editura == editura">
+        {{editura.denumireEditura}}
+      </option>
+    </select>
+  </div>
+
+  <input type="hidden" class="form-control" id="idCarte" required [(ngModel)]="carte.idCarte" name="idCarte">
+
+
+
+  <button type="submit">Save new carte</button>
+</form>
+

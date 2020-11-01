@@ -5,12 +5,14 @@ import Entityes.Carte;
 import Repository.CarteRepository;
 import Repository.ICarteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class CarteController {
 
     @Autowired
@@ -22,13 +24,15 @@ public class CarteController {
     }
 
     @GetMapping(value = "/Carte/CarteById")
+    @CrossOrigin(origins = "http://localhost:4200")
     public Carte getCarteDupaId(int id) {
         return _carteRepository.getCarteDupaId(id);
     }
 
-    @PostMapping(value = "/Carte/SaveCarte")
-    public void saveCarti(@RequestBody CreateCarteDTO modelView){
-        _carteRepository.SaveCarteNowaSiAutory(modelView);
+    @PostMapping(value ="/Carte/SaveCarte")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public void saveCarte(@RequestBody Carte carte){
+        _carteRepository.saveCarte(carte);
     }
 
     @GetMapping(value = "/Carte/CartiByTitlu")

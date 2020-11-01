@@ -18,12 +18,8 @@ public class AutorController {
     @Autowired
     public IAutorRepository _autorRepository;
 
-    @GetMapping(value = "/Autor")
-    public ModelAndView HomeAutor(){
-        return new ModelAndView("AutorView", "Autor", new Autor());
-    }
-
-    @GetMapping(value =  "/GetAllAutors")
+    @GetMapping(value =  "/Autor")
+    @CrossOrigin(origins = "http://localhost:4200")
     public List<Autor> getAllAutors() {
        return _autorRepository.getAllAutors();
     }

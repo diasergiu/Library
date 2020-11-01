@@ -1,6 +1,5 @@
 package Entityes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -29,14 +28,15 @@ public class Carte {
     @JsonProperty
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-            CascadeType.PERSIST,
+            CascadeType.MERGE,
             CascadeType.MERGE
     })
-    private Set<Autor> autorNavigator;
+    private Set<Autor> autori;
+
     @JsonProperty
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_editura")
-    private Editura edituraNavigator;
+    private Editura editura;
 
     public int getIdCarte() {
         return idCarte;
@@ -70,19 +70,19 @@ public class Carte {
         this.anPublicatie = anPublicatie;
     }
 
-    public Set<Autor> getAutorNavigator() {
-        return autorNavigator;
+    public Set<Autor> getAutori() {
+        return autori;
     }
 
-    public void setAutorNavigator(Set<Autor> autorNavigator) {
-        this.autorNavigator = autorNavigator;
+    public void setAutori(Set<Autor> autori) {
+        this.autori = autori;
     }
 
-    public Editura getEdituraNavigator() {
-        return edituraNavigator;
+    public Editura getEditura() {
+        return editura;
     }
 
-    public void setEdituraNavigator(Editura edituraNavigator) {
-        this.edituraNavigator = edituraNavigator;
+    public void setEditura(Editura editura) {
+        this.editura = editura;
     }
 }

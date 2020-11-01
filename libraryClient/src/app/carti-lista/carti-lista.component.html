@@ -1,0 +1,19 @@
+
+  <table  class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">An publicatie</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let carte of carti">
+        <td>{{carte.titlu}}</td>
+        <td>{{carte.ISBN}}</td>
+        <td>{{carte.anPublicatie}}</td>
+        <td><a mat-button [routerLink]="['/app-carte-edit', carte.idCarte]">edit</a> </td>
+      </tr>
+    </tbody>
+</table >
+

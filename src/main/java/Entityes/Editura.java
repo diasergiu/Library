@@ -25,7 +25,7 @@ public class Editura {
     private String denumireEditura;
     @JsonProperty
 
-    @OneToMany(mappedBy="edituraNavigator",
+    @OneToMany(mappedBy="editura",
             fetch = FetchType.LAZY,
             orphanRemoval = false)
     private Set<Carte> carteNavigator;

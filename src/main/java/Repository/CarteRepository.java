@@ -1,7 +1,5 @@
 package Repository;
 
-import DAO.AutorDAO;
-import DAO.CarteDAO;
 import DAO.Interfaces.IAutorDAO;
 import DAO.Interfaces.ICarteDAO;
 import DTO.CreateCarteDTO;
@@ -9,11 +7,12 @@ import Entityes.Autor;
 import Entityes.Carte;
 import com.tutorial.h2.librarie.Util.EntityManagerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class CarteRepository implements ICarteRepository {
+public class CarteRepository implements ICarteRepository  {
 
     @Autowired
     private ICarteDAO _carteDAO;
@@ -25,7 +24,8 @@ public class CarteRepository implements ICarteRepository {
     }
 
     public void SaveCarteNowaSiAutory(CreateCarteDTO modelView) {
-        modelView.getCarte().setAutorNavigator(modelView.getAutoriCarti());
+
+        modelView.getCarte().setAutori(modelView.getAutoriCarti());
         for(Autor a : modelView.getAutoriCarti()){
             a.getCarteNavigator().add(modelView.getCarte());
         }
@@ -51,5 +51,19 @@ public class CarteRepository implements ICarteRepository {
 
     public void deleteCarte(int id) {
         _carteDAO.DeleteCarte(id);
+    }
+
+    @Override
+    public void saveCarte(Carte carte) {
+        EntityManager manager = EntityManagerUtil.getEntityManager();
+        manager.getTransaction().begin();
+
+
+        for (Autor a : carte.getAutori()) {
+            a.getCarteNavigator().add(carte);
+        }
+        _autorDAO.SaveAutorii(carte.getAutori(), manager);
+        _carteDAO.SaveCarte(carte, manager);
+        manager.getTransaction().commit();
     }
 }

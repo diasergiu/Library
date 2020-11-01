@@ -2,7 +2,10 @@ package DAO;
 
 import DAO.Interfaces.IAutorDAO;
 import Entityes.Autor;
+import Entityes.Carte;
 import com.tutorial.h2.librarie.Util.EntityManagerUtil;
+import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -10,9 +13,11 @@ import java.util.Set;
 
 public class AutorDAO implements IAutorDAO {
 
+    @Transactional
     public void SaveAutorii(Set<Autor> autoriCarti, EntityManager entityManager) {
         for(Autor a : autoriCarti){
-            entityManager.persist(a);
+            Session session = (Session) entityManager.getDelegate();
+            session.saveOrUpdate(a);
         }
     }
 
@@ -40,8 +45,8 @@ public class AutorDAO implements IAutorDAO {
         entityManager.getTransaction().begin();
         Autor autor = entityManager.find(Autor.class, autorUpdatata.getIdAutor());
         autor.setCarteNavigator(autorUpdatata.getCarteNavigator());
-        autor.setNameAutor(autorUpdatata.getNameAutor());
-        autor.setPrenumeAutor(autorUpdatata.getPrenumeAutor());
+        autor.setNume(autorUpdatata.getNume());
+        autor.setPrenume(autorUpdatata.getPrenume());
         entityManager.persist(autor);
         entityManager.getTransaction().commit();
     }

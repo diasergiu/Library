@@ -3,6 +3,7 @@ package DAO.Interfaces;
 import Entityes.Autor;
 
 import javax.persistence.EntityManager;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -16,4 +17,5 @@ public interface IAutorDAO {
     void updateAutor(Autor autorUpdatata);
 
     void deleteAutor(int id);
+
 }

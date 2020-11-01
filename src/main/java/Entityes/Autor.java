@@ -31,7 +31,7 @@ public class Autor {
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
                     CascadeType.MERGE
             }
             )
@@ -55,18 +55,18 @@ public class Autor {
         this.idAutor = idAutor;
     }
 
-    public String getNameAutor() { return nume; }
+    public String getNume() { return nume; }
 
-    public void setNameAutor(String nameAutor) {
+    public void setNume(String nameAutor) {
         this.nume = nameAutor;
     }
 
-    public String getPrenumeAutor() {
+    public String getPrenume() {
         return prenume;
     }
 
-    public void setPrenumeAutor(String prenumeAutor) {
-        this.prenume = prenumeAutor;
+    public void setPrenume(String prenume) {
+        this.prenume = prenume;
     }
 
     public Set<Carte> getCarteNavigator() {

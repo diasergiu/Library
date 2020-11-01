@@ -17,4 +17,5 @@ public interface ICarteRepository {
     void updateCarte(Carte carteUpdatata);
 
     void deleteCarte(int id);
+    void saveCarte(Carte carte);
 }

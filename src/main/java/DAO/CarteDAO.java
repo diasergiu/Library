@@ -1,10 +1,13 @@
 package DAO;
 
 import DAO.Interfaces.ICarteDAO;
+import Entityes.Autor;
 import Entityes.Carte;
 import com.tutorial.h2.librarie.Util.EntityManagerUtil;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
+import org.springframework.data.jpa.repository.support.JpaEntityInformation;
+import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -12,8 +15,10 @@ public class CarteDAO implements ICarteDAO {
 
     private static int PAGE_SIZE = 10;
 
+    @Transactional
     public void SaveCarte(Carte carte, EntityManager entityManager) {
-        entityManager.persist(carte);
+        Session session = (Session) entityManager.getDelegate();
+        session.saveOrUpdate(carte);
     }
 
     public List<Carte> GetToateCartile() {
@@ -43,9 +48,9 @@ public class CarteDAO implements ICarteDAO {
         EntityManager entityManager = EntityManagerUtil.getEntityManager();
         entityManager.getTransaction().begin();
         Carte carte = entityManager.find(Carte.class, carteUpdatata.getIdCarte());
-        carte.setAutorNavigator(carteUpdatata.getAutorNavigator());
+        carte.setAutori(carteUpdatata.getAutori());
         carte.setAnPublicatie(carteUpdatata.getAnPublicatie());
-        carte.setEdituraNavigator(carteUpdatata.getEdituraNavigator());
+        carte.setEditura(carteUpdatata.getEditura());
         carte.setISBN(carteUpdatata.getISBN());
         carte.setTitlu(carteUpdatata.getTitlu());
         entityManager.persist(carte);
@@ -67,4 +72,6 @@ public class CarteDAO implements ICarteDAO {
         manager.getTransaction().commit();
         return carte;
     }
+
+
 }
